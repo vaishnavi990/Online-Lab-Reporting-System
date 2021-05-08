@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Edit Test Details</title>
+    <link rel="stylesheet" type="text/css" href="/css/admin_page.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+   
+</head>
+<body>
+    <div class="container-lg">
+        <div class="table-responsive">
+            <div class="container-lg">
+                <div class="row">
+                    <div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <div class="panel-title">Edit Parameter Details</div>
+                            </div>  
+                            <div class="panel-body" >
+                                <form action="/edit_parameter_details/" id="TestForm" class="form-horizontal" method="post"  role="form" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label for="test_id" class="col-md-3 control-label">Test ID</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="test_id" value="<%= record.test_id%>" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="test_type" class="col-md-3 control-label">Test Type</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="test_type" value="<%= record.test_type%>" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cost" class="col-md-3 control-label">Minimum</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="minimum" value="<%= record.minimum%>" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cost" class="col-md-3 control-label">Maximum</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="maximum" value="<%= record.maximum%>" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <!-- Button -->                                        
+                                        <div class="col-md-offset-3 col-md-9">
+                                        <input type="submit" name="submit" value="submit" class="btn btn-primary">   
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div> 
+        </div>
+    </div>
+</body>
+</html>

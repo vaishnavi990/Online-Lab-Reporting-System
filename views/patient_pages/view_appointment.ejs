@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PATIENT PAGE</title>
+    <link rel="stylesheet" type="text/css" href="/css/patient_page.css">
+    <link rel="stylesheet" type="text/css" href="/css/patient_page.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    
+</head>
+
+<body>
+
+<div class="tab">
+  <button class="tablinks" onclick="window.location.href='/patient/appointment';">Appointment</button>
+  <button class="tablinks" onclick="openCity(event, 'view_appointment')"id="defaultOpen">View Appointment Details</button>
+  <button class="tablinks" onclick="window.location.href='/patient/patient_report';">Report</button>  
+  <button class="tablinks" onclick="window.location.href='/';">Log Out</button> 
+</div>
+
+<div id="view_appointment" class="tabcontent">
+    <div class="container-lg">
+      <div class="table-responsive">   
+          <div class="table-wrapper">
+              <div class="table-title">
+                  <div class="row">
+                      <div class="col-sm-8"><h2><b> View Appointment Details</b></h2></div>
+                     
+                  </div>
+              </div>
+              <table class="table table-bordered">
+                  <thead>
+                      <tr>
+                          
+                          <th>Patient Name</th>
+                          <th>Test Details</th>
+                          <th>Date</th>
+                          <th>Time</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <% record.forEach(function(row){%>
+                      <tr>
+                        
+                        <td><%=row.patient_name%></td>
+                        <td><%= row.test_type%></td>
+                        <td><%= row.date%></td>
+                        <td><%=row.time%></td>
+                         
+                      </tr> 
+                      <%}) %>
+                  </tbody>
+              </table>
+          </div>
+          
+      </div>
+    </div>
+  </div>
+  <script src="/js/action.js"></script>
+  </body>
+  </html>

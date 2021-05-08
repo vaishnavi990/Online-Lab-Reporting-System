@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PRINT PAGE</title>
+    <link rel="stylesheet" type="text/css" href="/css/patient_page.css">
+    <link rel="stylesheet" type="text/css" href="/css/admin_page.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body> 
+    <h3 id="print">Test Report</h3>
+    <form action="/patient/print" id="TestForm" class="form-horizontal" method="post"  role="form" enctype="multipart/form-data">
+    </form>
+              <div class="table-wrapper">
+                <table class="table table-bordered" >
+                    <thead>
+                        <tr>
+                            <th>Patient ID</th>
+                            <th>Test ID</th>
+                            <th>Test Type</th>
+                            <th>Report On</th>
+                            <th>Name</th>
+                            <th>Minimum</th>
+                            <th>Maximum</th>
+                      
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <% record.forEach(function(row){%>
+                        <tr>
+                          <td><%= row.patient_id%></td>
+                          <td><%= row.test_id%></td>
+                          <td><%= row.test_type%></td> 
+                          <td><%= row.report_on%></td>
+                          <td><%= row.patient_name%></td>
+                          <td><%= row.minimum%></td>
+                          <td><%= row.maximum%></td>
+                        </tr>
+                        <%}) %>
+                    </tbody>
+                </table>
+                </div> 
+                <div id="print">
+                    <button onclick="window.print()">Print Report</button>
+                </div>
+</body>
+</html>

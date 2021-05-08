@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Patient PAGE</title>
+    <link rel="stylesheet" type="text/css" href="/css/patient_page.css">
+    <link rel="stylesheet" type="text/css" href="/css/patient_page.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    
+</head>
+<body>
+<nav class="tab">
+  <button class="tablinks" onclick="openCity(event, 'appointment')"id="defaultOpen">Appointment</button>
+  <button class="tablinks" onclick="window.location.href='/patient/view_appointment';">View Appointment Details</button>
+  <button class="tablinks" onclick="window.location.href='/patient/patient_report';">Report</button>
+  <button class="tablinks" onclick="window.location.href='/';">Log Out</button> 
+</nav>
+<div id="appointment" class="tabcontent">
+  <div class="container-lg">
+    <div class="table-responsive">
+        <div class="container-lg">
+            <div class="row">
+                <div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">Appointment</div>
+                        </div>  
+                        <div class="panel-body" >
+                            <form action="/patient/appointment" id="TestForm" class="form-horizontal" method="post"  role="form" enctype="multipart/form-data">    
+                                <div class="form-group">
+                                    <label for="appointment_id" class="col-md-3 control-label">Appointment Number</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id ="appointment_id"name="appointment_id" placeholder="Enter Appointment Number" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_type" class="col-md-3 control-label">Test Type</label>
+                                    <div class="col-md-9">
+                                        <select name="test_type"  class="ui dropdown">
+                                            <% test.forEach(function(suite) { %>     
+                                              <option  value="<%= suite.test_type %>" selected><%= suite.test_type %></option>
+                                              <% })%>
+                                
+                                          </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name" class="col-md-3 control-label">Name</label>
+                                    <div class="col-md-9">
+                                        <% names.forEach(function(row) { %> 
+                                        <input type="text" class="form-control" name="name" value="<%= row.name%>" readonly>
+                                        <% })%>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="date" class="col-md-3 control-label">Date</label>
+                                    <div class="col-md-9">
+                                        <input type="date" class="form-control" name="date" placeholder="Select Date" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="time" class="col-md-3 control-label">Time</label>
+                                    <div class="col-md-9">
+                                        <input type="time" class="form-control" name="time" placeholder="Select Time" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <!-- Button -->                                        
+                                    <div class="col-md-offset-3 col-md-9">
+                                    <input type="submit" name="submit" value="submit" class="btn btn-primary">   
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>    
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8"><h2><strong>Appointment</strong></h2></div>
+                   
+                </div>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Appointment Number</th>
+                        <th>Test Type</th>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <% record.forEach(function(row){%>
+                    <tr>
+                      <td><%= row.appointment_id%></td>
+                      <td><%= row.test_type%></td>
+                      <td><%= row.patient_name%></td>
+                      <td><%= row.date%></td>
+                      <td><%= row.time%></td>  
+                        <td>
+                            <a class="delete" title="Delete" data-toggle="tooltip" href='/patient/delete_appointment/<%= row.appointment_id%>'><em class="material-icons">&#xE872;</em></a>                        
+                        </td>
+                    </tr>
+                    <%}) %>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+  </div>
+</div>
+        
+<script src="/js/action.js"></script>
+<script>
+    function uniqueNumber() {
+    var date = Date.now();
+
+    // If created at same millisecond as previous
+    if (date <= uniqueNumber.previous) {
+        date = ++uniqueNumber.previous;
+    } else {
+        uniqueNumber.previous = date;
+    }
+    date =date.toString();
+    date = date.substring(8,date.length);
+    return date;
+}
+uniqueNumber.previous = 0;
+document.getElementById("appointment_id").value = uniqueNumber();
+</script>   
+</body>
+</html>

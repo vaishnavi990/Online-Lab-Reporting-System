@@ -1,0 +1,15 @@
+const express = require("express");
+const app = express();
+const bodyParser = require("body-parser");
+var multer = require('multer');
+var upload = multer();
+app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.json());
+app.use(upload.array()); 
+app.set('view engine', 'ejs'); 
+app.use(express.static(__dirname + '/views'));
+const router1 = require('./routes/admin.js');
+const router2 = require('./routes/patient.js');
+app.use(router1);
+app.use(router2);
+app.listen(3000);

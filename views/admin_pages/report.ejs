@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin PAGE</title>
+    <link rel="stylesheet" type="text/css" href="/css/admin_page.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+   
+    
+</head>
+
+<body>
+
+<nav class="nav">
+  <button class="tablinks" onclick="window.location.href='/admin/add_test';">Add Test Details</button>
+  <button class="tablinks" onclick="window.location.href='/admin/parameter_details';">Parameter Details</button>
+  <button class="tablinks" onclick="window.location.href='/admin/appointment_details';">Patient Appointment Details</button>
+  <button class="tablinks" onclick="window.location.href='/admin/patient_test_details';">Patient Test Details</button>  
+  <button class="tablinks" onclick="openCity(event, 'report')"id="defaultOpen">Report</button>
+  <button class="tablinks" onclick="window.location.href='/';">Log Out</button> 
+</nav>
+
+<div id="report" class="tabcontent">
+  <div class="container-lg">
+    <div class="table-responsive">
+            <div class="container-lg">
+              <div class="row">
+                  <div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                      <div class="panel panel-info">
+                          <div class="panel-heading">
+                              <div class="panel-title">Report</div>
+                          </div>  
+                          <div class="panel-body" >
+                            <form action="/admin/report" id="TestForm" class="form-horizontal" method="post"  role="form" enctype="multipart/form-data">
+                                      
+                                    <div class="form-group">
+                                        <label for="patient_id" class="col-md-3 control-label">Patient ID</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="patient_id" placeholder="Enter Patient ID">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <!-- Button -->                                        
+                                        <div class="col-md-offset-3 col-md-9">
+                                        <input type="submit" name="submit" value="submit" class="btn btn-primary">   
+                                      </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div> 
+                    </div>
+              </div> 
+              <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-8"><h2><strong>Report</strong></h2></div>
+                       
+                    </div>
+                </div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="width: 9%;">Patient ID</th>
+                            <th style="width: 7%;">Test ID</th>
+                            <th>Name</th>
+                            <th>Test Type </th>
+                            <th>Report On</th>
+                            <th>Minimum</th>
+                            <th>Maximum</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <% record.forEach(function(row){%>
+                        <tr>
+                          <td><%= row.patient_id%></td>
+                          <td><%= row.test_id%></td>
+                          <td><%= row.patient_name%></td>
+                          <td><%= row.test_type%></td>
+                          <td><%= row.report_on%></td> 
+                          <td><%= row.minimum%></td>
+                          <td><%= row.maximum%></td>
+                          <td>
+                            <a class="print" title="Print" data-toggle="tooltip" href='/patient/print/<%= row.patient_id%>'><i class="material-icons">print</i></a>
+                            <a class="email" title="Email" data-toggle="tooltip" href="mailto: abc@example.com"><i class="material-icons">email</i></a>
+                        </td>
+                        </tr>
+                        <%}) %>
+                    </tbody>
+                </table>
+                </div>   
+        </div>
+<script src="/js/action.js"></script>
+   
+</body>
+</html>

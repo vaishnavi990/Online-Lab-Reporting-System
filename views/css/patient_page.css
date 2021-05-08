@@ -1,0 +1,122 @@
+* {box-sizing: border-box}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  --color: 44, 62, 80;
+  --primary: 237, 73, 86;
+    --color1: 220, 40, 60;
+}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: transparent;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: #555;
+  float: left;
+  border: transparent;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 15px;
+  border-left:1px solid;
+  color: white;
+  text-decoration:none;
+  width: 25%;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #86998b;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #4CAF50;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 5px 12px;
+  
+}
+.tabcontent{
+    align-items: left;
+}
+.tabcontent h4{
+    font-weight: normal;
+    font-size: 1.8rem;
+    text-align: center;
+}
+.tabcontent h5{
+    font-weight: normal;
+    font-size: 1.1rem;
+    text-align: center;
+}
+.form{
+    max-width: 500px;
+    margin: auto;
+    
+}
+.form  input{
+    margin-bottom: 7px;
+    width: 50%;
+    padding: 14px 14px;
+    border: 6px;
+    background: #F1F3F6;
+    border-radius: 18px;
+    border:2px solid rgb(var(--color));
+} 
+ label {
+  display: inline-block;
+  width: 140px;
+  
+
+}
+
+div.btn_submit  {
+   text-align: center;
+   
+  
+}  
+.form input[type='submit']  {
+    margin-top: 25px;
+    margin-left: 150px;
+    border-color:transparent;
+    background-color: #4CAF50;
+    color: #F1F3F6;
+    display: inline-block;
+    width: 25%;
+}
+#printclass{
+  padding: 15px 32px;
+  font-size: 18px;
+}
+#print{
+  text-align: center;
+  margin: 50px 50px;
+  font-family: 'Times New Roman', Times, serif;
+}
+#test{
+  text-align: center;
+  padding: 25px;
+}
+#patientid{
+  padding: 15px 32px;
+  text-align: center;
+}
+#pid{
+  text-align: center;
+  padding-bottom: 15px; 
+  padding-right: 15px;
+  font-size: 18px;
+  margin-bottom: 70px;
+}
+#sub{
+  padding-left: 75px;
+  text-align: left;
+}

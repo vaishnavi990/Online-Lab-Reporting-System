@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin PAGE</title>
+    <link rel="stylesheet" type="text/css" href="/css/admin_page.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+
+<body>
+<nav class="nav">
+  <button class="tablinks" onclick="window.location.href='/admin/add_test';">Add Test Details</button>
+  <button class="tablinks" onclick="window.location.href='/admin/parameter_details';">Parameter Details</button>
+  <button class="tablinks" onclick="window.location.href='/admin/appointment_details';">Patient Appointment Details</button>
+  <button class="tablinks" onclick="openCity(event, 'patient_test_details')" id="defaultOpen">Patient Test Details</button>
+  <button class="tablinks" onclick="window.location.href='/admin/report';">Report</button>  
+  <button class="tablinks" onclick="window.location.href='/';">Log Out</button> 
+</nav>
+
+<div id="patient_test_details" class="tabcontent">
+  <div class="container-lg">
+    <div class="table-responsive">
+        <div class="container-lg">
+            <div class="row">
+                <div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">Patient Test Details Form</div>
+                        </div>  
+                        <div class="panel-body" >
+                            <form action="/admin/patient_test_details" id="PatientTestForm" class="form-horizontal" method="post"  role="form" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="patient_id" class="col-md-3 control-label">Patient ID</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="patient_id" placeholder="Enter Patient ID" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="patient_name" class="col-md-3 control-label">Name</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="patient_name" placeholder="Enter Patient Name" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="test_id" class="col-md-3 control-label">Test ID</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="test_id" placeholder="Enter Test ID" required>
+                                    </div>
+                                </div>
+                                  
+                                <div class="form-group">
+                                    <label for="test_type" class="col-md-3 control-label">Test Type</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="test_type" placeholder="Enter test type" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="maximum" class="col-md-3 control-label">Report On</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="report_on" placeholder="Report On" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="minimum" class="col-md-3 control-label">Minimum</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="minimum" placeholder="Enter Minimum value" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="maximum" class="col-md-3 control-label">Maximum</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="maximum" placeholder="Enter Maximum value" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <!-- Button -->                                        
+                                    <div class="col-md-offset-3 col-md-9">
+                                    <input type="submit" name="submit" value="submit" class="btn btn-primary">   
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8"><h2>Add Patient Test <b>Details</b></h2></div>
+                </div>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th style="width: 9%;">Patient ID</th>
+                        <th style="width: 7%;">Test ID</th>
+                        <th>Name</th>
+                        <th>Test Type</th>
+                        <th>Report On</th>
+                        <th>Minimum</th>
+                        <th>Maximum</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <% record.forEach(function(row){%>
+                    <tr>
+                      <td><%= row.patient_id%></td>
+                      <td><%= row.test_id%></td>
+                      <td><%= row.patient_name %></td>
+                      <td><%= row.test_type%></td>
+                      <td><%= row.report_on%></td> 
+                      <td><%= row.minimum%></td>
+                      <td><%= row.maximum%></td>  
+                        <td>
+                            <a class="add" title="Add" data-toggle="tooltip"><em class="material-icons">&#xE03B;</em></a>
+                            <a class="edit" title="Edit" data-toggle="tooltip" href='/edit_patient_test_details/{"patient_id":<%= row.patient_id%>,"test_id":<%= row.test_id%>}'><em class="material-icons">&#xE254;</em></a>
+                            <a class="delete" title="Delete" data-toggle="tooltip" href='/delete_patient_test_details/<%= row.patient_id%>'><em class="material-icons">&#xE872;</em></a>
+                        </td>
+                    </tr>
+                    <%}) %>
+                </tbody>
+            </table>
+        </div>
+            
+    </div>
+  </div>
+</div>
+<script src="/js/action.js"></script>
+</body>
+</html> 

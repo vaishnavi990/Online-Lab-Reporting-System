@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin PAGE</title>
+    <link rel="stylesheet" type="text/css" href="/css/admin_page.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+
+<body>
+
+<nav class="nav">
+  <button class="tablinks" onclick="window.location.href='/admin/add_test';">Add Test Details</button>
+  <button class="tablinks" onclick="window.location.href='/admin/parameter_details';">Parameter Details</button>
+  <button class="tablinks" onclick="openCity(event, 'appointment_details')" id="defaultOpen">Patient Appointment Details</button>
+  <button class="tablinks" onclick="window.location.href='/admin/patient_test_details';">Patient Test Details</button>  
+  <button class="tablinks" onclick="window.location.href='/admin/report';">Report</button>
+  <button class="tablinks" onclick="window.location.href='/';">Log Out</button> 
+</nav>
+
+<div id="appointment_details" class="tabcontent">
+  <div class="container-lg">
+    <div class="table-responsive">
+        <div class="container-lg">
+            <div class="row">
+                <div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">Search Patient Appointment</div>
+                        </div>  
+                        <div class="panel-body" >
+                            <form action="/admin/appointment_details" id="TestForm" class="form-horizontal" method="post"  role="form" enctype="multipart/form-data">
+                                
+                                    
+                                <div class="form-group">
+                                    <label for="patient_id" class="col-md-3 control-label">Patient ID</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="patient_id" placeholder="Enter Test ID">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <!-- Button -->                                        
+                                    <div class="col-md-offset-3 col-md-9">
+                                    <input type="submit" name="submit" value="submit" class="btn btn-primary">   
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>    
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8"><h2>Appointment<b>Details</b></h2></div>
+                   
+                </div>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Appointment ID</th>
+                        <th>Test Type</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Patient Id</th>
+                        <th>Patient Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <% record.forEach(function(row){%>
+                    <tr>
+                      <td><%= row.appointment_id%></td>
+                      <td><%= row.test_type%></td>
+                      <td><%= row.date%></td>  
+                      <td><%= row.time%></td>
+                      <td><%= row.patient_id%></td>
+                      <td><%= row.patient_name%></td>
+                    </tr>
+                    <%}) %>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+  </div>
+</div>
+<script src="/js/action.js"></script>
+</body>
+</html> 
